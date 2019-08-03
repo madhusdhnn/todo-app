@@ -1,0 +1,49 @@
+{
+  "name": "todo-client",
+  "version": "1.0.0",
+  "description": "Todo app using ReactJS, Webpack and Babel",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=development npm run dev",
+    "dev": "webpack-dev-server --mode development --colors",
+    "build": "NODE_ENV=production PORT=5000 npm run prod",
+    "prod": "webpack --mode production --colors"
+  },
+  "keywords": [
+    "Todo",
+    "react"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/madhusdhnn/todo-client.git"
+  },
+  "author": "Madhusudhanan",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "6.26.3",
+    "babel-loader": "7.1.5",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-object-rest-spread": "6.26.0",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-react": "6.24.1",
+    "babel-preset-stage-2": "6.24.1",
+    "css-loader": "2.1.1",
+    "file-loader": "3.0.1",
+    "html-webpack-plugin": "3.2.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "node-sass": "4.11.0",
+    "sass-loader": "7.1.0",
+    "style-loader": "0.23.1",
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "webpack": "4.29.6",
+    "webpack-cli": "3.3.0",
+    "webpack-dev-server": "3.2.1"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "prop-types": "15.7.2",
+    "react": "16.8.5",
+    "react-dom": "16.8.5",
+    "react-router-dom": "5.0.0"
+  }
+}

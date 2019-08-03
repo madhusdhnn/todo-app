@@ -1,0 +1,21 @@
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+### STS ###
+.settings
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out
+
+### VAGRANT ###
+*.retry
+.vagrant
+*.log
+
+node_modules
+public
