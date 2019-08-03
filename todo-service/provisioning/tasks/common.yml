@@ -1,0 +1,15 @@
+---
+- apt:
+    update_cache: yes
+
+- name: Install dependencies
+  apt :
+    name            :
+      - build-essential
+      - ca-certificates
+      - libssl-dev
+      - libpq-dev
+      - curl
+      - wget
+    state           : present
+    cache_valid_time: 3600

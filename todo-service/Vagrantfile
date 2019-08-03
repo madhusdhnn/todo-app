@@ -1,0 +1,25 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "ubuntu/xenial64"
+
+  config.vm.box_check_update = false
+
+  config.vm.network "forwarded_port", guest: 5432, host: 5432
+  config.vm.network "forwarded_port", guest: 8081, host: 8081
+
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 1024
+    v.cpus = 1
+  end
+
+  config.vm.define "todo_app" do |dev|
+    dev.vm.provision "ansible" do |ansible|
+      ansible.playbook = "provisioning/dev.yml"
+      ansible.verbose = "vvv"
+    end
+  end
+
+end

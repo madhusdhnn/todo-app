@@ -1,0 +1,5 @@
+---
+- name: Install stubby package globally
+  npm :
+    name  : stubby
+    global: yes

@@ -1,0 +1,24 @@
+---
+- shell        : which node
+  register     : nodejs_present
+  ignore_errors: True
+
+- shell: curl -sL https://deb.nodesource.com/setup_8.x | bash -
+  when : nodejs_present is failed
+
+- apt :
+    update_cache: yes
+  when: nodejs_present is failed
+
+- apt : name='nodejs' state=present
+  when: nodejs_present is failed
+
+- shell        : which nf
+  register     : foreman_present
+  ignore_errors: True
+
+- name: Install Foreman
+  npm :
+    name  : foreman
+    global: yes
+  when: foreman_present is failed

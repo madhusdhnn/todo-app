@@ -1,0 +1,36 @@
+---
+- name   : postgres repo keys
+  apt_key:
+    id : ACCC4CF8
+    url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+
+- name          : postgres source repo
+  apt_repository:
+    repo        : "deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main"
+    filename    : pgdg.list
+    update_cache: yes
+
+- apt: update_cache=yes
+
+- name: Install Postgres
+  apt :
+    name :
+      - postgresql-9.6
+      - postgresql-client-9.6
+      - postgresql-contrib-9.6
+      - libpq-dev
+    state: present
+
+- name    : Postgres trust all authentication
+  copy    : content="host all all 0.0.0.0/0 trust" dest=/etc/postgresql/9.6/main/pg_hba.conf force=yes
+  register: pg_changed1
+
+- name      : Postgres listen on all interfaces
+  lineinfile: >
+    line="listen_addresses = '*'" regexp="listen_addresses"
+    dest=/etc/postgresql/9.6/main/postgresql.conf state=present
+  register  : pg_changed2
+
+- name   : Restart postgresql
+  service: name=postgresql state=restarted enabled=yes
+  when   : (pg_changed1 is changed) or (pg_changed2 is changed)

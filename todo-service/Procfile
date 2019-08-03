@@ -1,0 +1,1 @@
+web: java -jar -Dspring.config.location=file:config/test/application.yml -Dlogging.config=file:config/test/log4j2-spring.xml build/libs/todo-service.jar
