@@ -1,0 +1,40 @@
+spring :
+  flyway    :
+    locations: classpath:db/migrate
+    url      : jdbc:postgresql://localhost:5432/todoapp_development
+    user     : postgres
+    password :
+    enabled  : true
+
+  datasource:
+    hikari           :
+      maximum-pool-size: 10
+      minimum-idle     : 1
+    url              : jdbc:postgresql://localhost:5432/todoapp_development
+    username         : postgres
+    password         :
+    driver-class-name: org.postgresql.Driver
+
+  jpa       :
+    properties:
+      hibernate:
+        jdbc      :
+          lob:
+            non_contextual_creation: true
+        format_sql: true
+    show-sql  : true
+
+
+server :
+  port: 9999
+
+api_key: 37f458af-8f74-4e40-aedd-71a0cd264662
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL : debug
+        type:
+          descriptor:
+            sql: trace

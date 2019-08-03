@@ -1,0 +1,51 @@
+group = 'com.company.api'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.2.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+bootJar {
+    setArchivesBaseName("todo-service")
+    version = ''
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+configurations.all {
+    exclude module: "spring-boot-starter-tomcat"
+    exclude module: "spring-boot-starter-jetty"
+    exclude module: "spring-boot-starter-logging"
+}
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation("org.springframework.boot:spring-boot-starter-undertow")
+
+    implementation("org.flywaydb:flyway-core")
+    implementation('org.postgresql:postgresql')
+
+    implementation('org.springframework.boot:spring-boot-starter-log4j2')
+
+    compileOnly('org.projectlombok:lombok')
+    annotationProcessor('org.projectlombok:lombok')
+
+    implementation 'com.diffplug.durian:durian:3.4.0'
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.23.4'
+}
